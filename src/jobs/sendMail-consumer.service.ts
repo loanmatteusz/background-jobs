@@ -10,6 +10,7 @@ class SendMailConsumer {
 
   @Process('sendMailJob')
   async sendMailJob(job: Job<CreateUserDTO>) {
+    console.log({ job });
     const { data } = job;
     await this.mailService.sendMail({
       to: data.email,

@@ -4,7 +4,7 @@ import { BullModule } from '@nestjs/bull';
 import { MailerModule } from '@nestjs-modules/mailer'; 
 import { CreateUserController } from './create-user/create-user.controller';
 import { SendMailProducerService } from './jobs/sendMail-producer.service';
-import { SendMailConsumer } from './jobs/sendMail.consumer';
+import { SendMailConsumer } from './jobs/sendMail-consumer.service';
 
 @Module({
   imports: [
@@ -13,7 +13,7 @@ import { SendMailConsumer } from './jobs/sendMail.consumer';
       redis: {
         host: process.env.REDIS_HOST,
         port: Number(process.env.REDIS_PORT),
-      }
+      },
     }),
     BullModule.registerQueue({
       name: 'sendMailQueue',
